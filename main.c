@@ -11,14 +11,17 @@ int main(){
     pid_t p1;
     pid_t p2;
     p1 = fork();
-    p2 = fork();
     if (p1==0){
-        printf("child 1");
+        printf("child 1 pid: %d\n",getpid());
     }
-    else if (p2==0){
-        printf("child 2");
+    else {
+        p2 = fork();
+        if (p2==0){
+            printf("child 2 pid: %d\n",getpid());    
+        }
+        else{
+            printf("parent pid: %d\n",getpid()); 
+        }
     }
-    else{
-        printf("parent");
-    }
+    
 }
